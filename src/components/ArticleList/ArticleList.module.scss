@@ -1,0 +1,16 @@
+.articleList {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.articleList__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pagination{
+  display: flex;
+  justify-content: center;
+}
