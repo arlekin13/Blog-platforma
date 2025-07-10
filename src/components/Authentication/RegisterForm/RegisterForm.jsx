@@ -1,19 +1,54 @@
-import React from "react";
-import { Form, Input, Button,Checkbox } from 'antd'
+import React , { useState } from "react";
+import { Form, Input, Button,Checkbox,message  } from 'antd'
 import { Link} from 'react-router-dom'
 import styles from './RegisterForm.module.scss'
+import { useNavigate } from 'react-router-dom';
+import { registerUser } from '../../../api/api'
 
 
 function RegisterForm(){
+
+
+
+  const [form]=Form.useForm()
+const navigate =useNavigate()
+
+const onFinish= async(value)=>{
+  try{
+    cpnst response = await registerUser(value)
+    if(response.status===201){
+      message.success('Зарегестрирован! Залогинься');
+      form.resetFields()
+      navigate('/login')
+    }else{
+      message.error(response.data.message || 'Ошибка регистрации.Попробуй снова!')
+    }
+  }catch(error){
+    message.error(error.response?.data?.message || 'Ошибка регистрации.Проверь всё и попробуй снова!');
+    console.error('Registration error:', error.response?.data);
+  }
+}
+
+const onFinishFailed = (errorInfo) => {
+  console.log('Провал:', errorInfo);
+  message.error('Корректно всё заполни!'); 
+};
+
+
+
+
     return(
         <div className={styles.registerForm}>
         <h2 className={styles.registerForm__title}> Sign Up</h2>
         
         <Form 
-       
+       form={form}
         name="register" 
         layout="vertical" 
         requiredMark={false} 
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+          autoComplete="off"
       >
          
          <Form.Item
