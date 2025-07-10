@@ -1,0 +1,64 @@
+.registerForm{
+   background-color: #fff;
+width: 384px;
+
+border-radius: 5px;
+box-shadow: 0 2px 25px #00000040;
+border: 1px solid #D9D9D9 ;
+padding: 48px 32px;
+margin: 60px auto;
+font-family: Roboto;
+
+font-weight: 500;
+font-size: 20px;
+
+line-height: 28px;
+letter-spacing: 0%;
+text-align: center;
+ 
+}
+
+.registerForm__title{
+ text-align: center;
+
+}
+.checkbox-agree{
+    margin-top: 12px;
+    color: #595959;
+    text-align: start;
+    font-weight: 400;
+    font-family: Roboto;
+    font-size: 14px;
+leading-trim: NONE;
+line-height: 22px;
+letter-spacing: 0%;
+border-top: 2 solid #E8E8E8;
+
+  }
+  .checkbox-box{
+    font-weight: 400;
+    font-family: Roboto;
+    padding-bottom: 5px;
+  }
+  .input{
+    height: 40px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+  }
+  .item{
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-family: Roboto;
+    font-weight: 400;
+  }
+  .login-link{
+    font-family: Roboto;
+    color: #8c8c8c;
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 400;
+    .login{
+      color: #1890ff;
+    }
+  }

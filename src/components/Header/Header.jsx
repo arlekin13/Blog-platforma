@@ -11,8 +11,13 @@ function Header() {
         </Link>
         
         <div className={styles.header__actions}>
-          <button className={styles.header__signIn}>SIGN IN</button>
+          
+            <Link to='/login' className={styles.header__signIn}>
+            <button className={styles.header__signIn}>SIGN IN </button>
+            </Link>
+            <Link to='/register'>
           <button className={styles.header__signUp}>SIGN UP</button>
+          </Link>
         </div>
       </div>
     </header>

@@ -4,6 +4,10 @@ import Header from './components/Header/Header';
 import ArticleList from './components/ArticleList/ArticleList';
 import Article from './components/Article/Article';
 import { BrowserRouter, Route,Routes} from 'react-router-dom'
+import RegisterPage from './components/Authentication/RegisterPage/RegisterPage';
+import ProfilePage from './components/Authentication/ProfilePage/ProfilePage';
+import LoginPage from './components/Authentication/LoginPage/LoginPage';
+
 
 
 function App() {
@@ -18,7 +22,9 @@ function App() {
           <Route path='/' element={<ArticleList/>}/>
           <Route path='/articles' element={<ArticleList/>}/>
           <Route path='/articles/:slug' element={<Article/>}/>
-
+          <Route path='/login' element={<LoginPage/>}/>
+          <Route path='/register' element={<RegisterPage/>}/>
+          <Route path='/profile' element={<ProfilePage/>}/>
         </Routes>
         
       </main>

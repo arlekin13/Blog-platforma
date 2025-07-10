@@ -1,3 +1,4 @@
+
 .App {
    
     padding: 20px;
@@ -16,4 +17,12 @@
 .main {
   flex: 1;
   padding-top: 0;
+}
+.ant-btn {
+  font-family: 'Roboto', sans-serif;
+}
+
+.ant-form-item-label > label {
+  font-family: 'Roboto', sans-serif;
+ 
 }

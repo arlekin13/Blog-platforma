@@ -1,13 +1,8 @@
 .header {
- 
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
   border: 1px solid #ccc;
-  
- 
-  
-
 }
 
 .header__container {
@@ -23,9 +18,11 @@
     margin: 0;
     font-size: 18px;
     font-weight: 400;
-  
     font-family: 'Inter', sans-serif;
     line-height: 28px;
+    &:hover {
+      color: #52C41A;
+    }
   }
 }
 
@@ -36,12 +33,20 @@
 }
 
 .header__signIn{
+  display: flex;
+  align-items: center;
+  background-color: white;
   border: none;
   font-size: 16px;
   font-family: 'Inter', sans-serif;
   line-height: 22px;
-  background-color: white;
+  background-color: white; 
+  transition: all 0.2s ease;
+  &:hover {
+    color: #52C41A;
+   
   
+  }
 }
 
 .header__signUp {
@@ -58,6 +63,7 @@
  border: 1px solid #52C41A;
 
  &:hover {
+  color: #fff;
   background-color: #52C41A;
 
 }
