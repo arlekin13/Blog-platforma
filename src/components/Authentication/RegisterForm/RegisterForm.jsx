@@ -3,29 +3,47 @@ import { Form, Input, Button,Checkbox,message  } from 'antd'
 import { Link} from 'react-router-dom'
 import styles from './RegisterForm.module.scss'
 import { useNavigate } from 'react-router-dom';
-import { registerUser } from '../../../api/api'
+import { registerUser } from '../../api/api'
 
 
 function RegisterForm(){
-
-
-
+  const [isLoading,setIsLoading]=useState(false)
+  const [error,setError]=useState(null)
+  
   const [form]=Form.useForm()
 const navigate =useNavigate()
 
 const onFinish= async(value)=>{
+  setIsLoading(true)
+  setError(null)
+
   try{
-    cpnst response = await registerUser(value)
-    if(response.status===201){
-      message.success('Зарегестрирован! Залогинься');
-      form.resetFields()
-      navigate('/login')
-    }else{
-      message.error(response.data.message || 'Ошибка регистрации.Попробуй снова!')
+    const userData={
+      username: value.username,
+      email: value.email,
+      password: value.password,
     }
+    const response = await registerUser(userData)
+    localStorage.setItem('token',response.user.token)
+
+   
+    message.success('Зарегестрирован! Залогинься');
+    form.resetFields();
+    navigate('/login');
   }catch(error){
-    message.error(error.response?.data?.message || 'Ошибка регистрации.Проверь всё и попробуй снова!');
-    console.error('Registration error:', error.response?.data);
+    if (error.response && error.response.data && error.response.data.errors) {
+      const errorMessages = error.response.data.errors;
+      Object.keys(errorMessages).forEach((field) => {
+        message.error(`${field}: ${errorMessages[field].join(', ')}`);
+      });
+      setError('Ошибка валидации. Исправьте поля.');
+    } else {
+      setError(error.message || 'Ошибка регистрации. Проверьте всё и попробуйте снова!');
+      message.error(error.message || 'Ошибка регистрации. Проверьте всё и попробуйте снова!');
+    }
+    console.error('Рег ошибка:', error);
+  }finally{
+    setIsLoading(false)
   }
 }
 
@@ -58,6 +76,8 @@ const onFinishFailed = (errorInfo) => {
             { required: true, message: 'Please input your username!' },
             { min: 3, message: 'Username must be at least 3 characters' },
             { max: 20, message: 'Username must be at most 20 characters' },
+            { value: /^[a-z][a-z0-9]*$/,message: 'You can only use lowercase English letters and numbers',
+              }
           ]}
           rootClassName={styles.item}
         >
