@@ -49,7 +49,13 @@ export const loginUser = async(credentials)=>{
         return response.data
     }catch(error){
         console.error('ошибка логин АПИ:', error);
-        throw error
+        if(error.response && error.response.data && error.response.data.error)
+        {
+            throw new Error(JSON.stringify(error.response.data.errors ))
+        }else{
+            throw new Error(error.message || 'Login failed');
+        }
+       
     }
 }
 
@@ -63,7 +69,7 @@ export const getCurrentUser= async()=>{
     try{
         const response=await axios.get(`${API_BASE_URL}/user`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Token ${token}`,
       },}    )
       return response.data
     }catch(error){

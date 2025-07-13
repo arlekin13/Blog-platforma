@@ -49,8 +49,11 @@ const logout = ()=>{
         
 
         <div className={styles.header__actions}>
+         
           
-        <Link to='/' >
+            {isLoggedIn ? ( 
+                <>
+              <Link to='/' >
             <button className={styles.header__createArticle}>Create article</button>
             </Link>
 
@@ -63,17 +66,24 @@ const logout = ()=>{
             </div>
 
 
-            <Link to='/'>
-          <button className={styles.header__logout}>Log Out</button>
-          </Link>
-
-
+            
+          <button
+          onClick={logout}
+          className={styles.header__logout}>Log Out</button>
+          </>
+          ): (<>
             <Link to='/login' className={styles.header__signIn}>
             <button className={styles.header__signIn}>SIGN IN </button>
             </Link>
             <Link to='/register'>
           <button className={styles.header__signUp}>SIGN UP</button>
           </Link>
+          </>
+          )}
+
+          
+           
+        
         </div>
       </div>
     </header>

@@ -20,21 +20,33 @@ const onFinish= async(value)=>{
     localStorage.setItem('token', response.user.token);
     message.success('Вы успешно вошли! Сейчас перенаправим на главную страницу.');
       navigate('/');
+
   }catch (err) {
-    setError(err.message || 'Ошибка входа. Проверьте email и пароль.');
-    message.error(err.message || 'Ошибка входа. Проверьте email и пароль.');
-    console.error('Login error:', err);
+    let errorMessage =  'Ошибка входа. Проверьте email и пароль.';
+
+    try {
+ 
+      const errors = JSON.parse(err.message);
+  
+      if (typeof errors === 'object' && errors !== null) {
+        errorMessage = Object.entries(errors)
+          .map(([field, messages]) => `${field}: ${messages.join(', ')}`)
+          .join('\n');}}
+
+          catch(parseError){
+ console.error( err.message);
+          }
+          setError(errorMessage);
+      message.error(errorMessage);
+      console.error('Ошибка в логине:', err);
   } finally {
     setIsLoading(false);
   }
 }
 const onFinishFailed = (errorInfo) => {
-  console.log('Failed:', errorInfo);
+ 
   message.error('Пожалуйста, заполните все поля корректно!');
 };
-
-
-
 
     return(
 <div className={styles.loginForm}>
@@ -54,7 +66,10 @@ name="email"
 
         label="Email address"
         rootClassName={styles.item}
-        rules={[{ required: true, message: 'Please input your username!' }]}
+        rules={[
+          { required: true, message: 'Пожалуйста, введите ваш email!' },
+          { type: 'email', message: 'Пожалуйста, введите корректный email!' },
+        ]}
       
     
       >
@@ -68,7 +83,9 @@ name="email"
       name="password"
         label="Password"
         rootClassName={styles.item}
-        rules={[{ required: true, message: 'Please input your password!' }]}>
+        rules={[
+          { required: true, message: 'Пожалуйста, введите ваш пароль!' }
+          ]}>
             
         <Input.Password 
         style={{ width: '100%', height: '40px'  ,fontSize:'16px'}}
@@ -80,32 +97,17 @@ name="email"
         <Button 
         style={{ width: '100%', height: '40px' ,fontSize:'16px',}} 
         type="primary" 
-        htmlType="submit">
+        htmlType="submit"
+        loading={isLoading}>
          Login
         </Button>
+        {error && <div>{error}</div>}
       </Form.Item>
 
         </Form>
 
 </div>
 
-
-
-// <form className={styles.loginForm}>
-//     <h2> Sign In</h2>
-
-   
-//     <label className={styles.email__label} htmlFor="username">Email address</label>
-//     <input  className={styles.email__input} type="text" id="username"/>
-
-    
-//     <label className={styles.password__label} htmlFor="password">Password</label>
-//     <input  className={styles.password__input} type="password" id="password"/>
-
-//     <button className={styles.button} type="submit">Login</button>
-
-
-// </form> 
    )  
     
 }
