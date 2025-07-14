@@ -7,7 +7,7 @@ import { BrowserRouter, Route,Routes} from 'react-router-dom'
 import RegisterPage from './components/Authentication/RegisterPage/RegisterPage';
 import ProfilePage from './components/Authentication/ProfilePage/ProfilePage';
 import LoginPage from './components/Authentication/LoginPage/LoginPage';
-
+import NewArticlePage from './components/NewArticlePage/NewArticlePage';
 
 
 function App() {
@@ -25,6 +25,7 @@ function App() {
           <Route path='/login' element={<LoginPage/>}/>
           <Route path='/register' element={<RegisterPage/>}/>
           <Route path='/profile' element={<ProfilePage/>}/>
+          <Route path='/new-article' element={<NewArticlePage/>}/>
         </Routes>
         
       </main>

@@ -77,3 +77,22 @@ export const getCurrentUser= async()=>{
         throw error;
     }
 }
+
+
+export const createArticle = async(articleData)=>{
+    const token= localStorage.getItem('token')
+    if(!token){
+        throw new Error('Net tokena')
+    }
+    try{
+        const response= await axios.post(`${API_BASE_URL}/articles`, articleData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    return response.data
+    }catch(error){
+        console.error('ошибка создания статьи', error)
+        throw error
+    }
+}
