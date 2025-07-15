@@ -11,11 +11,11 @@ function NewArticlePage(){
 
     return(
 
-       <div>
-        <h1> Create new article</h1>
+      
+        
         <ArticleForm
         onArticleSubmit = {handleArticleCreated}/>
-       </div> 
+      
     )
 }
 export default NewArticlePage

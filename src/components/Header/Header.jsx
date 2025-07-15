@@ -53,7 +53,7 @@ const logout = ()=>{
           
             {isLoggedIn ? ( 
                 <>
-              <Link to='/' >
+              <Link to='/new-article' >
             <button className={styles.header__createArticle}>Create article</button>
             </Link>
 

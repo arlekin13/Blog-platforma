@@ -59,6 +59,7 @@ const onFinishFailed = (errorInfo) => {
         autoComplete="off"
         onFinish={onFinish}
         onFieldsFailed={onFinishFailed}
+        hideRequiredMark
       >
 
 <Form.Item

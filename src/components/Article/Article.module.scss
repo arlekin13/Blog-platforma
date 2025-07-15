@@ -8,7 +8,12 @@ border-radius: 5px;
   padding: 20px;
   border: 1px solid #ccc;
   margin: 25px auto;
-  
+  &__actions {
+    display: flex;
+    
+    margin-top: 30px;
+    gap: 12px; 
+  }
 }
 
 .article__content {
@@ -127,8 +132,9 @@ border-radius: 5px;
 
 .article__author {
   display: flex;
-
-      gap: 12px;
+justify-content: space-between;
+gap: 12px;
+      
 }
 
 .article__avatar {
@@ -169,10 +175,6 @@ border-radius: 5px;
 
 
 
-.article {
- 
-}
-
 .title {
   font-size: 24px;
   margin-bottom: 10px;
@@ -185,4 +187,31 @@ border-radius: 5px;
 .content {
   font-size: 16px;
   line-height: 1.5;
+}
+.editButton{
+  padding: 6px 19px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: #fff;
+  font-family: 'Inter', sans-serif;
+  line-height: 22px;
+ color: #52C41A;
+ border: 1px solid #52C41A;
+
+ &:hover {
+  color: #fff;
+  background-color: #52C41A !important;
+
+}
+}
+.deleteButton{
+  &:hover {
+  border: 1px solid #F5222D !important;
+    color: #fff !important;
+    background-color:#F5222D !important;
+  
+  }
 }
