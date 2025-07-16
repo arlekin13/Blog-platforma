@@ -12,6 +12,7 @@ import EditArticlePage from './components/EditArticlePage/EditArticlePage';
 
 
 
+
 function App() {
   return (
 
@@ -29,6 +30,7 @@ function App() {
           <Route path='/profile' element={<ProfilePage/>}/>
           <Route path='/new-article' element={<NewArticlePage/>}/>
           <Route path='/articles/:slug/edit' element={<EditArticlePage/>}/>
+          <Route path='/profile' element={<ProfilePage/>}/>
         </Routes>
         
       </main>

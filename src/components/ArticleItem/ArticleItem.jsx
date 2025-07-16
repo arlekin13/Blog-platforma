@@ -34,7 +34,7 @@ function ArticleItem(
     
             try {
               if (isFavorited) {
-                console.log("Удаляем лайк...");
+              
                 await axios.delete(
                   `https://blog-platform.kata.academy/api/articles/${article.slug}/favorite`,
                   {
@@ -43,7 +43,7 @@ function ArticleItem(
                 );
                 setLikesCount((prev) =>  (Number(prev) - 1) || 0);
               } else {
-                console.log("Ставим лайк...");
+                
                 await axios.post(
                   `https://blog-platform.kata.academy/api/articles/${article.slug}/favorite`,
                   {},

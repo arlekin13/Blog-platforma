@@ -2,10 +2,11 @@ import axios from 'axios'
 
 
 const API_BASE_URL = 'https://blog-platform.kata.academy/api'
-const getToken= ()=>{
-    return localStorage.getItem('token')}
+const getToken = () => {
+    return localStorage.getItem('token');
+}
 
-const  authHeader=()=>{
+const authHeader = () => {
     const tokenValue = getToken();
     return tokenValue ? { Authorization: `Token ${tokenValue}` } : {};
 }
@@ -24,14 +25,18 @@ export const getArticles = async (page = 1, limit = 5, token) => {
     }
 };
 
-export const getArticle = async (slug)=>{
-    
-    try{
-        const response=await axios.get (`${API_BASE_URL}/articles/${slug}`)
-        return response.data
-    }catch(error){
+export const getArticle = async (slug) => {
+    const tokenValue = getToken();
+    const headers = tokenValue ? { Authorization: `Token ${tokenValue}` } : {};
+    try {
+        const response = await axios.get(
+            `${API_BASE_URL}/articles/${slug}`,
+            { headers }
+        );
+        return response.data;
+    } catch (error) {
         console.error('Ошибка при получении статьи:', error);
-        throw error
+        throw error;
     }
 }
 
@@ -142,22 +147,20 @@ export const editArticle=async(slug,articleData)=>{
       }
     }
 
-    export const unlikeArticle= async(slug)=>{
-        const tokenValue=getToken()
-        if(!tokenValue){
-            throw new Error('net tokena')
+    export const unlikeArticle = async (slug) => {
+        const tokenValue = getToken();
+        if (!tokenValue) {
+            throw new Error('net tokena');
         }
-        try{
-            const response =await axios.delete(
-                `${API_BASE_URL}/articles/${slug}/favorite`, {}, {
-            headers: authHeader() ,})
-        
-        
-        return response.data
-        
-      }catch(error){
-        throw error
-      }
+        try {
+            const response = await axios.delete(
+                `${API_BASE_URL}/articles/${slug}/favorite`,
+                { headers: authHeader() }
+            );
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
     }
 
     export const getArticleBySlug = async (slug, token) => {

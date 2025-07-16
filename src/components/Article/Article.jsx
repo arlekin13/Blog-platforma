@@ -66,16 +66,16 @@ const handleLikeClick = async () => {
     return;
   }
   try {
+    let data;
     if (isFavorited) {
-      await unlikeArticle(slug);
-      setLikesCount((prev) => (Number(prev) - 1) || 0);
-      setIsFavorited(false);
+      data = await unlikeArticle(slug);
     } else {
-      await likeArticle(slug);
-      setLikesCount((prev) => (Number(prev) + 1) || 0);
-      setIsFavorited(true);
+      data = await likeArticle(slug);
     }
-
+ 
+    setArticle(data.article);
+    setIsFavorited(data.article.favorited);
+    setLikesCount(Number(data.article.favoritesCount) || 0);
   } catch (error) {
     message.error('Ошибка при попытке лайкнуть статью');
   }
@@ -94,7 +94,7 @@ if (!article) {
 }
 
 
-const { title, description, createdAt, author, body ,favoritesCount,tagList } = article
+const { title, description, createdAt, author, body ,tagList } = article
 const isAuthor= currentUser && article?.author?.username === currentUser?.user?.username
 
 const formattedDate= DateTime.fromISO(createdAt).setLocale('en').toLocaleString(DateTime.DATE_MED)
