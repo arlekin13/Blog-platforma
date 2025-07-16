@@ -10,24 +10,25 @@ const  authHeader=()=>{
     return tokenValue ? { Authorization: `Token ${tokenValue}` } : {};
 }
 
-export const getArticles = async( page =1, limit = 5)=>{
-    try{
-        const response = await axios.get (`${API_BASE_URL}/articles?limit=${limit}&offset=${(page - 1) * limit}`)
-        return response.data
-    }catch(error){
-        console.error('ошибка получения статей',error)
-        throw error
+export const getArticles = async (page = 1, limit = 5, token) => {
+    try {
+        const headers = token ? { Authorization: `Token ${token}` } : {};
+        const response = await axios.get(
+            `${API_BASE_URL}/articles?limit=${limit}&offset=${(page - 1) * limit}`,
+            { headers }
+        );
+        return response.data;
+    } catch (error) {
+        console.error('ошибка получения статей', error);
+        throw error;
     }
-}
+};
 
 export const getArticle = async (slug)=>{
     
     try{
         const response=await axios.get (`${API_BASE_URL}/articles/${slug}`)
-        const data = await response.data
-        
-        console.log("Fetch API Data:", data);
-        return data
+        return response.data
     }catch(error){
         console.error('Ошибка при получении статьи:', error);
         throw error
@@ -122,3 +123,56 @@ export const editArticle=async(slug,articleData)=>{
         throw error
       }  }
     
+
+      export const likeArticle= async(slug)=>{
+        const tokenValue=getToken()
+        if(!tokenValue){
+            throw new Error('net tokena')
+        }
+        try{
+            const response =await axios.post(
+                `${API_BASE_URL}/articles/${slug}/favorite`, {}, {
+            headers: authHeader() ,})
+        
+        
+        return response.data
+        
+      }catch(error){
+        throw error
+      }
+    }
+
+    export const unlikeArticle= async(slug)=>{
+        const tokenValue=getToken()
+        if(!tokenValue){
+            throw new Error('net tokena')
+        }
+        try{
+            const response =await axios.delete(
+                `${API_BASE_URL}/articles/${slug}/favorite`, {}, {
+            headers: authHeader() ,})
+        
+        
+        return response.data
+        
+      }catch(error){
+        throw error
+      }
+    }
+
+    export const getArticleBySlug = async (slug, token) => {
+        try {
+            const response = await axios.get(
+                `https://blog-platform.kata.academy/api/articles/${slug}`,
+                {
+                    headers: {
+                        Authorization: `Token ${token}`,
+                    },
+                }
+            );
+            return response.data.article;
+        } catch (error) {
+            console.error('Ошибка при получении статьи по slug:', error);
+            return null; //
+        }
+    };

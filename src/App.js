@@ -8,6 +8,7 @@ import RegisterPage from './components/Authentication/RegisterPage/RegisterPage'
 import ProfilePage from './components/Authentication/ProfilePage/ProfilePage';
 import LoginPage from './components/Authentication/LoginPage/LoginPage';
 import NewArticlePage from './components/NewArticlePage/NewArticlePage';
+import EditArticlePage from './components/EditArticlePage/EditArticlePage';
 
 
 
@@ -27,6 +28,7 @@ function App() {
           <Route path='/register' element={<RegisterPage/>}/>
           <Route path='/profile' element={<ProfilePage/>}/>
           <Route path='/new-article' element={<NewArticlePage/>}/>
+          <Route path='/articles/:slug/edit' element={<EditArticlePage/>}/>
         </Routes>
         
       </main>

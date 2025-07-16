@@ -4,7 +4,7 @@
     background-color: #fff;
   border-radius: 5px;
     box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
-    margin-bottom: 26px;
+    margin: 0 auto;
     overflow: hidden;
 }
 
@@ -69,18 +69,7 @@
     
 }
 .articleItem__redLikeBtn{
-    background: none;
-    padding: 4px 12px;
-    cursor: pointer;
-    font-size: 12px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    white-space: nowrap;
-    transition: all 0.2s ease;
-    min-width: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @extend .articleItem__likeBtn;
     &::before{
         content: url('../assets/heartActive.svg');
         margin-top: 4px;
