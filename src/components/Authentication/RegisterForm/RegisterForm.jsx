@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, Checkbox, message } from 'antd';
-import { Link } from 'react-router-dom';
 import styles from './RegisterForm.module.scss';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { registerUser } from '../../api/api';
 
 function RegisterForm() {
@@ -167,7 +166,7 @@ function RegisterForm() {
 
         <span className={styles['login-link']}>
           Already have an account?
-          <Link to="/login" className={styles['login']}>
+          <Link to="/login" className={styles.login}>
             {' '}
             Sign In.
           </Link>

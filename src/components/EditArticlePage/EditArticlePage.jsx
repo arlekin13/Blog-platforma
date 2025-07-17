@@ -103,15 +103,15 @@ function EditArticlePage() {
       </Form.Item>
 
       <Form.Item
-        label={<span rootClassName={styles.label}>SHORT DESCRIPTION</span>}
+        label={<span className={styles.label}>SHORT DESCRIPTION</span>}
         name="description"
         rules={[{ required: true, message: 'Введите краткое описание!' }]}
       >
-        <Input rootClassName={styles.input} placeholder=" Description" />
+        <Input className={styles.input} placeholder=" Description" />
       </Form.Item>
 
       <Form.Item
-        label={<span rootClassNam={styles.label}>TEXT</span>}
+        label={<span className={styles.label}>TEXT</span>}
         name="body"
         rules={[{ required: true, message: 'Введите текст' }]}
       >
@@ -119,9 +119,9 @@ function EditArticlePage() {
       </Form.Item>
 
       <div className={styles.tagsContainer}>
-        <span rootClassNam={styles.label}>TAGS</span>
+        <span className={styles.label}>TAGS</span>
         {tags.map((tag, index) => (
-          <div rootClassNam={styles.tagItem} key={index}>
+          <div className={styles.tagItem} key={index}>
             <Input
               type="text"
               size="small"
