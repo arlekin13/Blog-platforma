@@ -1,21 +1,14 @@
-import React from "react";
-import {useNavigate} from 'react-router-dom'
-import ArticleForm from '../../components/ArticleForm/ArticleForm'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import ArticleForm from '../../components/ArticleForm/ArticleForm';
 
-function NewArticlePage(){
-    const navigate= useNavigate()
-    
-    const handleArticleCreated =(slug)=>{
-        navigate(`/articles/${slug}`)
-    }
+function NewArticlePage() {
+  const navigate = useNavigate();
 
-    return(
+  const handleArticleCreated = (slug) => {
+    navigate(`/articles/${slug}`);
+  };
 
-      
-        
-        <ArticleForm
-        onArticleSubmit = {handleArticleCreated}/>
-      
-    )
+  return <ArticleForm onArticleSubmit={handleArticleCreated} />;
 }
-export default NewArticlePage
+export default NewArticlePage;
