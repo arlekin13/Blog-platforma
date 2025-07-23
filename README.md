@@ -1,1 +1,1 @@
-https://blog-platform-p4nf8zy7p-arlekin13rus-projects.vercel.app/
+https://blog-platform-g5e058qb1-arlekin13rus-projects.vercel.app/
